@@ -1,1 +1,18 @@
-Yup
+<ion-app>
+  <ion-split-pane content-id="content">
+    <ion-menu type="overlay" content-id="content">
+      <ion-header>
+        <ion-toolbar translucent>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-item>
+          Map
+        </ion-item>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
