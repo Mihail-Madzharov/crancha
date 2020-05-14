@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@crancha/shell": ["libs/shell/src/index.ts"],
+      "@crancha/public": ["libs/public/src/index.ts"],
+      "@crancha/domain": ["libs/domain/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

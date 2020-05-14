@@ -25,6 +25,15 @@
     "crancha-client-e2e": {
       "tags": [],
       "implicitDependencies": ["crancha-client"]
+    },
+    "shell": {
+      "tags": []
+    },
+    "public": {
+      "tags": []
+    },
+    "domain": {
+      "tags": []
     }
   }
 }
