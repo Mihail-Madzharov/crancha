@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "crancha-client": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/crancha-client",
+      "sourceRoot": "apps/crancha-client/src",
+      "prefix": "crancha",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/crancha-client",
+            "index": "apps/crancha-client/src/index.html",
+            "main": "apps/crancha-client/src/main.ts",
+            "polyfills": "apps/crancha-client/src/polyfills.ts",
+            "tsConfig": "apps/crancha-client/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/crancha-client/src/favicon.ico",
+              "apps/crancha-client/src/assets"
+            ],
+            "styles": ["apps/crancha-client/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/crancha-client/src/environments/environment.ts",
+                  "with": "apps/crancha-client/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "crancha-client:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "crancha-client:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "crancha-client:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/crancha-client/tsconfig.app.json",
+              "apps/crancha-client/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/crancha-client/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/crancha-client/jest.config.js",
+            "tsConfig": "apps/crancha-client/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/crancha-client/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "crancha-client-e2e": {
+      "root": "apps/crancha-client-e2e",
+      "sourceRoot": "apps/crancha-client-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/crancha-client-e2e/cypress.json",
+            "tsConfig": "apps/crancha-client-e2e/tsconfig.e2e.json",
+            "devServerTarget": "crancha-client:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "crancha-client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/crancha-client-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/crancha-client-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "crancha-client"
+}
