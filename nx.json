@@ -37,6 +37,12 @@
     },
     "feature-path-upload": {
       "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
     }
   }
 }

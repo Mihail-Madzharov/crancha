@@ -2,4 +2,16 @@
   {{ item.name }}
   <img [src]="item.path" alt="" />
 </div>
-<ion-input type="file" (change)="uploadFile($event)"></ion-input>
+<ion-content>
+  <form [formGroup]="pathFormGroup" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>Upload file</ion-label>
+      <crancha-file-upload type="file" formControlName="file"></crancha-file-upload>
+    </ion-item>
+    <ion-item>
+      <ion-label>File path name</ion-label>
+      <ion-input formControlName="pathName"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!pathFormGroup.valid">Submit</button>
+  </form>
+</ion-content>
