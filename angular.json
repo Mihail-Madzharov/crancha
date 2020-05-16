@@ -94,6 +94,10 @@
             "passWithNoTests": true,
             "setupFile": "apps/crancha-client/src/test-setup.ts"
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -211,6 +215,38 @@
             "tsConfig": "libs/domain/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/domain/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "feature-path-upload": {
+      "projectType": "library",
+      "root": "libs/feature-path-upload",
+      "sourceRoot": "libs/feature-path-upload/src",
+      "prefix": "crancha",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature-path-upload/tsconfig.lib.json",
+              "libs/feature-path-upload/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-path-upload/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-path-upload/jest.config.js",
+            "tsConfig": "libs/feature-path-upload/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/feature-path-upload/src/test-setup.ts"
           }
         }
       },

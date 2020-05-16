@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "crancha-71fc8"
+  },
+  "targets": {
+    "crancha-71fc8": {
+      "hosting": {
+        "crancha-client": [
+          "crancha-71fc8"
+        ]
+      }
+    }
   }
 }

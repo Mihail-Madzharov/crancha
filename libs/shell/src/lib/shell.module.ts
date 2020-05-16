@@ -5,7 +5,7 @@ import { ShellRoutingModule } from './shell-routing.module';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-  imports: [CommonModule, ShellRoutingModule, IonicModule],
+  imports: [CommonModule, ShellRoutingModule, IonicModule,],
   declarations: [ShellComponent]
 })
 export class ShellModule {}

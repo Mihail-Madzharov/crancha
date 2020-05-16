@@ -5,7 +5,16 @@ import { ShellComponent } from './shell.component';
 const routes: Routes = [
   {
     path: '',
-    component: ShellComponent
+    component: ShellComponent,
+    children: [
+      {
+        path: 'upload',
+        loadChildren: () =>
+          import('@crancha/feature-path-upload').then(
+            m => m.FeaturePathUploadModule
+          )
+      }
+    ]
   }
 ];
 
