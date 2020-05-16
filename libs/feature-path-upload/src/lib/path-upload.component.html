@@ -6,12 +6,24 @@
   <form [formGroup]="pathFormGroup" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label>Upload file</ion-label>
-      <crancha-file-upload type="file" formControlName="file"></crancha-file-upload>
+      <crancha-file-upload
+        type="file"
+        formControlName="file"
+      ></crancha-file-upload>
+      <ion-label color="danger" *ngIf="fileValidation"
+        >Wrong file extension</ion-label
+      >
     </ion-item>
     <ion-item>
       <ion-label>File path name</ion-label>
       <ion-input formControlName="pathName"></ion-input>
     </ion-item>
-    <button ion-button type="submit" [disabled]="!pathFormGroup.valid">Submit</button>
+    <ion-button
+      ion-button
+      type="submit"
+      [disabled]="!pathFormGroup.valid"
+      size="large"
+      >Submit</ion-button
+    >
   </form>
 </ion-content>

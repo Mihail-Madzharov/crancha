@@ -13,6 +13,15 @@ import { Observable } from 'rxjs';
 export class PathUploadComponent implements OnInit {
   items: Observable<any[]>;
   public pathFormGroup: FormGroup;
+
+  get pathNameValidation(): boolean {
+    return this.pathFormGroup.controls['pathName'].valid;
+  }
+
+  get fileValidation(): boolean {
+    return this.pathFormGroup.controls['file'].valid;
+  }
+
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage
@@ -39,7 +48,13 @@ export class PathUploadComponent implements OnInit {
       .add({ name: 'Alexnadra', path: urlPath });
   }
 
-  onSubmit() {
-    console.log(this.pathFormGroup.value);
+  async onSubmit() {
+    const { file, pathName } = this.pathFormGroup.value;
+    const filePath = 'paths/files';
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
+
+    const urlPath = await ref.getDownloadURL().toPromise();
+    this.firestore.collection('items').add({ name: pathName, path: urlPath });
   }
 }
