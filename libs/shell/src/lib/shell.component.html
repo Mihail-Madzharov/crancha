@@ -1,12 +1,4 @@
 <ion-app>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button color="primary"></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-split-pane content-id="content">
     <ion-menu type="overlay" content-id="content">
       <ion-header>
@@ -15,13 +7,13 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-item>
+        <ion-item [routerLink]="['/map']">
           <ion-label>
             Map
           </ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label routerLink="upload">
+        <ion-item [routerLink]="['/upload']">
+          <ion-label>
             Uploads
           </ion-label>
         </ion-item>

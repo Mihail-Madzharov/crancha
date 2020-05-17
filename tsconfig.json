@@ -21,7 +21,8 @@
       "@crancha/domain": ["libs/domain/src/index.ts"],
       "@crancha/feature-path-upload": ["libs/feature-path-upload/src/index.ts"],
       "@crancha/ui": ["libs/ui/src/index.ts"],
-      "@crancha/utils": ["libs/utils/src/index.ts"]
+      "@crancha/utils": ["libs/utils/src/index.ts"],
+      "@crancha/feature-map": ["libs/feature-map/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

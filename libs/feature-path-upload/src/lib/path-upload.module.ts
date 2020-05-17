@@ -10,6 +10,7 @@ import { PathUploadComponent } from './path-upload.component';
 const routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: PathUploadComponent
   }
 ];

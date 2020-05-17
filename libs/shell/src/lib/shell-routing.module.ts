@@ -8,11 +8,21 @@ const routes: Routes = [
     component: ShellComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'map',
+        pathMatch: 'full'
+      },
+      {
         path: 'upload',
         loadChildren: () =>
           import('@crancha/feature-path-upload').then(
             m => m.FeaturePathUploadModule
           )
+      },
+      {
+        path: 'map',
+        loadChildren: () =>
+          import('@crancha/feature-map').then(m => m.MapModule)
       }
     ]
   }

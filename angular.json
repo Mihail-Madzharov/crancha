@@ -120,10 +120,7 @@
               "apps/crancha-client/tsconfig.app.json",
               "apps/crancha-client/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/crancha-client/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/crancha-client/**"]
           }
         },
         "test": {
@@ -186,13 +183,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/crancha-client-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/crancha-client-e2e/**"
-            ]
+            "tsConfig": ["apps/crancha-client-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/crancha-client-e2e/**"]
           }
         }
       }
@@ -210,10 +202,7 @@
               "libs/shell/tsconfig.lib.json",
               "libs/shell/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shell/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shell/**"]
           }
         },
         "test": {
@@ -245,10 +234,7 @@
               "libs/public/tsconfig.lib.json",
               "libs/public/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/public/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/public/**"]
           }
         },
         "test": {
@@ -280,10 +266,7 @@
               "libs/domain/tsconfig.lib.json",
               "libs/domain/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/domain/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/domain/**"]
           }
         },
         "test": {
@@ -315,10 +298,7 @@
               "libs/feature-path-upload/tsconfig.lib.json",
               "libs/feature-path-upload/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/feature-path-upload/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/feature-path-upload/**"]
           }
         },
         "test": {
@@ -350,10 +330,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
           }
         },
         "test": {
@@ -385,10 +362,7 @@
               "libs/utils/tsconfig.lib.json",
               "libs/utils/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/utils/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/utils/**"]
           }
         },
         "test": {
@@ -398,6 +372,38 @@
             "tsConfig": "libs/utils/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/utils/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "feature-map": {
+      "projectType": "library",
+      "root": "libs/feature-map",
+      "sourceRoot": "libs/feature-map/src",
+      "prefix": "crancha",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature-map/tsconfig.lib.json",
+              "libs/feature-map/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-map/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-map/jest.config.js",
+            "tsConfig": "libs/feature-map/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/feature-map/src/test-setup.ts"
           }
         }
       },
