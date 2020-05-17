@@ -16,13 +16,16 @@ export class PathUploadComponent implements OnInit {
 
   get pathNameValidation(): boolean {
     return (
-      this.pathFormGroup.controls['pathName'].valid &&
-      this.pathFormGroup['pathName'].touched
+      this.pathFormGroup.get('pathName').valid &&
+      this.pathFormGroup.get('pathName').touched
     );
   }
 
   get fileValidation(): boolean {
-    return this.pathFormGroup.controls['file'].valid;
+    return (
+      this.pathFormGroup.get('file').errors &&
+      this.pathFormGroup.get('file').errors.requiredFileType
+    );
   }
 
   constructor(
@@ -39,18 +42,6 @@ export class PathUploadComponent implements OnInit {
     });
   }
 
-  async uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'paths/files';
-    const ref = this.storage.ref(filePath);
-    const task = ref.put(file);
-
-    const urlPath = await ref.getDownloadURL().toPromise();
-    this.firestore
-      .collection('items')
-      .add({ name: 'Alexnadra', path: urlPath });
-  }
-
   async onSubmit() {
     const { file, pathName } = this.pathFormGroup.value;
     const filePath = 'paths/files';
@@ -58,6 +49,9 @@ export class PathUploadComponent implements OnInit {
     const task = ref.put(file);
 
     const urlPath = await ref.getDownloadURL().toPromise();
-    this.firestore.collection('items').add({ name: pathName, path: urlPath });
+    this.firestore.createId();
+    this.firestore
+      .collection('paths')
+      .add({ id: this.firestore.createId(), name: pathName, path: urlPath });
   }
 }

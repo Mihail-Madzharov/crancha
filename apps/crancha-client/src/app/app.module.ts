@@ -9,6 +9,8 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,7 +20,9 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot()
   ],
   providers: [{ provide: BUCKET, useValue: 'gs://crancha-71fc8.appspot.com' }],
   bootstrap: [AppComponent]

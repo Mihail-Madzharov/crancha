@@ -1,1 +1,6 @@
-<ion-input class="file-input" type="file"></ion-input>
+<ion-item lines="none">
+  <ion-input class="file-input" type="file"></ion-input>
+  <ion-label *ngIf="valid" color="danger">
+    Wrong file extension
+  </ion-label>
+</ion-item>

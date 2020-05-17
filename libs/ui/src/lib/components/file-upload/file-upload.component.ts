@@ -24,6 +24,9 @@ export class FileUploadComponent implements ControlValueAccessor {
   onChange: Function;
   public file: File | null = null;
 
+  @Input()
+  valid: boolean;
+
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
     const file = event && event.item(0);
     this.onChange(file);
