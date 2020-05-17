@@ -15,7 +15,10 @@ export class PathUploadComponent implements OnInit {
   public pathFormGroup: FormGroup;
 
   get pathNameValidation(): boolean {
-    return this.pathFormGroup.controls['pathName'].valid;
+    return (
+      this.pathFormGroup.controls['pathName'].valid &&
+      this.pathFormGroup['pathName'].touched
+    );
   }
 
   get fileValidation(): boolean {
