@@ -8,12 +8,22 @@ import { MapFacade } from '@crancha/domain';
 })
 export class MapComponent implements OnInit {
   constructor(private mapFacade: MapFacade) {}
-
+  public center = { lat: 42.0987626, lng: 24.1593068 };
   ngOnInit() {
     this.mapFacade.paths.subscribe(a => {
       console.log(a);
     });
-
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      },
+      err => {
+        console.log(err);
+      }
+    );
     this.mapFacade.loadPaths();
   }
 

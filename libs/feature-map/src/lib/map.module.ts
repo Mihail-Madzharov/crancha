@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { MapEffects, mapFeatureKey, mapReducers } from '@crancha/domain';
+import {GoogleMapsModule} from '@angular/google-maps';
+import { StoreModule } from '@ngrx/store';
 
 import { MapComponent } from './map.component';
-import { StoreModule } from '@ngrx/store';
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
+    GoogleMapsModule,
     EffectsModule.forFeature([MapEffects]),
     StoreModule.forFeature(mapFeatureKey,mapReducers),
     RouterModule.forChild([
