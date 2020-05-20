@@ -1,4 +1,8 @@
+import { Point } from './point';
 export class Path {
+  id: string;
   pathName: string;
-  file: [];
+  path: string;
+  color: string;
+  points: Point[];
 }

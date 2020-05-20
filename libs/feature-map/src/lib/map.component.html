@@ -6,5 +6,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <google-map [center]="center" [zoom]="12"></google-map>
+  <google-map [center]="center" [zoom]="12">
+    <map-polyline
+      *ngFor="let item of paths | async"
+      #polyline
+      [options]="{ path: item.points, strokeColor: item.color }"
+      (polylineClick)="onPloylineClick($event)"
+    ></map-polyline>
+  </google-map>
 </ion-content>

@@ -5,7 +5,7 @@ export const loadPaths = createAction('[Map] Load Paths');
 
 export const loadPathsSuccess = createAction(
   '[Map] Load Paths Success',
-  props<{ data: Path[] }>()
+  props<{ data: Path }>()
 );
 
 export const loadPathsFailure = createAction(

@@ -7,12 +7,10 @@ import { MapFacade } from '@crancha/domain';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  public paths = this.mapFacade.paths;
   constructor(private mapFacade: MapFacade) {}
   public center = { lat: 42.0987626, lng: 24.1593068 };
   ngOnInit() {
-    this.mapFacade.paths.subscribe(a => {
-      console.log(a);
-    });
     navigator.geolocation.getCurrentPosition(
       position => {
         this.center = {
@@ -27,7 +25,7 @@ export class MapComponent implements OnInit {
     this.mapFacade.loadPaths();
   }
 
-  loadPaths() {
-    this.mapFacade.loadPaths();
+  onPloylineClick(plyline) {
+    console.log(plyline);
   }
 }

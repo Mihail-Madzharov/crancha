@@ -15,9 +15,10 @@ export const initialState: State = {
 export const mapReducers = createReducer(
   initialState,
 
-  on(MapActions.loadPathsSuccess, (state, action) => ({
-    ...state,
-    paths: action.data
-  })),
+  on(MapActions.loadPathsSuccess, (state, action) => {
+    const newPaths = [...state.paths];
+    newPaths.push(action.data);
+    return Object.assign({ ...state, paths: newPaths });
+  }),
   on(MapActions.loadPathsFailure, (state, action) => state)
 );

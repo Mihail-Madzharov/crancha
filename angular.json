@@ -63,7 +63,7 @@
                 "input": "apps/crancha-client/src/theme/variables.css"
               }
             ],
-            "scripts": []
+            "scripts": ["apps/crancha-client/src/assets/gpxParser.js"]
           },
           "configurations": {
             "production": {

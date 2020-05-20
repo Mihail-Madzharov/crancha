@@ -19,6 +19,16 @@
       <ion-label>File path name</ion-label>
       <ion-input formControlName="pathName"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Path color:</ion-label>
+      <ion-select formControlName="color" value="red">
+        <ion-select-option *ngFor="let color of colors" [value]="color">{{
+          color
+        }}</ion-select-option>
+      </ion-select>
+
+      <ion-input></ion-input>
+    </ion-item>
     <ion-button
       ion-button
       type="submit"
@@ -28,5 +38,3 @@
     >
   </form>
 </ion-content>
-
-//AIzaSyDz_6F2hiTpPJlNKD7bEMiBoIkSWtCfVo0

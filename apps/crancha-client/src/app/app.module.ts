@@ -21,6 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    HttpClientModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot()
   ],
