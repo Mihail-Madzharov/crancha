@@ -6,7 +6,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <google-map [center]="center" [zoom]="12">
+  <google-map
+    [center]="center"
+    [zoom]="12"
+    [options]="{ mapTypeId: terrain.value }"
+  >
     <map-polyline
       *ngFor="let item of paths | async"
       #polyline
@@ -14,4 +18,11 @@
       (polylineClick)="onPloylineClick($event)"
     ></map-polyline>
   </google-map>
+  <ion-item>
+    <ion-select #terrain value="hybrid">
+      <ion-select-option *ngFor="let terrain of mapTerrain" [value]="terrain">{{
+        terrain
+      }}</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-content>
