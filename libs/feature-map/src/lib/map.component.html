@@ -1,40 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="primary"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
-  <google-map
-    class="google-map"
-    [center]="center"
-    [zoom]="12"
-    [width]="'100%'"
-    [options]="{ mapTypeId: 'hybrid' }"
-  >
-    <map-marker
-      #marker
-      *ngFor="let item of waypoints$ | async"
-      [position]="{ lat: item.lat, lng: item.lng }"
-      [title]="item.name"
-      (mapClick)="openInfoWindow(marker, item.name)"
-    ></map-marker>
-    <map-polyline
-      *ngFor="let item of paths$ | async"
-      #polyline
-      [options]="{
-        path: item.points,
-        strokeColor: item.color,
-        strokeWeight: item.id === (selectedPathId | async) ? 5 : 3
-      }"
-      (polylineClick)="onPolylineClick(item.id)"
-    ></map-polyline>
-    <map-info-window>
-      {{ infoWindowContent }}
-    </map-info-window>
-  </google-map>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <div *ngFor="let path of paths$ | async">
+          <ion-button (click)="onPolylineClick(path.id)" [fill]="'clear'">{{
+            path.pathName
+          }}</ion-button>
+          <ion-card
+            *ngIf="
+              path.id === (selectedPathId | async) && path.waypoints.length > 0
+            "
+          >
+            <ion-grid>
+              <ion-row *ngFor="let waypoint of path.waypoints">
+                <b> {{ waypoint.name }} </b></ion-row
+              >
+            </ion-grid>
+          </ion-card>
+        </div>
+      </ion-col>
+      <ion-col size="10">
+        <google-map
+          class="google-map"
+          [center]="center"
+          [zoom]="12"
+          [width]="'100%'"
+          [options]="{ mapTypeId: 'hybrid' }"
+        >
+          <map-marker
+            #marker
+            *ngFor="let item of waypoints$ | async"
+            [position]="{ lat: item.lat, lng: item.lng }"
+            [title]="item.name"
+            (mapClick)="openInfoWindow(marker, item.name)"
+          ></map-marker>
+          <map-polyline
+            *ngFor="let item of paths$ | async"
+            #polyline
+            [options]="{
+              path: item.points,
+              strokeColor: item.color,
+              strokeWeight: item.id === (selectedPathId | async) ? 5 : 3
+            }"
+            (polylineClick)="onPolylineClick(item.id)"
+          ></map-polyline>
+          <map-info-window>
+            {{ infoWindowContent }}
+          </map-info-window>
+        </google-map>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-card *ngIf="selectedPath | async as path">
     <ion-card-header>
       <ion-card-title>{{ path.pathName | titlecase }}</ion-card-title>
@@ -45,23 +61,5 @@
         desc
       }}</ion-item>
     </ion-card-content>
-  </ion-card>
-  <ion-card slot="fixed">
-    <div *ngFor="let path of paths$ | async">
-      <ion-button (click)="onPolylineClick(path.id)" [fill]="'clear'">{{
-        path.pathName
-      }}</ion-button>
-      <ion-card
-        *ngIf="
-          path.id === (selectedPathId | async) && path.waypoints.length > 0
-        "
-      >
-        <ion-grid>
-          <ion-row *ngFor="let waypoint of path.waypoints">
-            <b> {{ waypoint.name }} </b></ion-row
-          >
-        </ion-grid>
-      </ion-card>
-    </div>
   </ion-card>
 </ion-content>
