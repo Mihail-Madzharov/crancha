@@ -7,16 +7,32 @@
 </ion-header>
 <ion-content>
   <google-map
+    class="google-map"
     [center]="center"
     [zoom]="12"
+    [width]="'100%'"
     [options]="{ mapTypeId: terrain.value }"
   >
+    <map-marker
+      #marker
+      *ngFor="let item of waypoints$ | async"
+      [position]="{ lat: item.lat, lng: item.lng }"
+      [title]="item.name"
+      (mapClick)="openInfoWindow(marker, item.name)"
+    ></map-marker>
     <map-polyline
       *ngFor="let item of paths | async"
       #polyline
-      [options]="{ path: item.points, strokeColor: item.color }"
-      (polylineClick)="onPloylineClick($event)"
+      [options]="{
+        path: item.points,
+        strokeColor: item.color,
+        strokeWeight: item.id === (selectedPathId | async) ? 5 : 3
+      }"
+      (polylineClick)="onPolylineClick(item.id)"
     ></map-polyline>
+    <map-info-window>
+      {{ infoWindowContent }}
+    </map-info-window>
   </google-map>
   <ion-item>
     <ion-select #terrain value="hybrid">
@@ -25,4 +41,16 @@
       }}</ion-select-option>
     </ion-select>
   </ion-item>
+
+  <ion-card *ngIf="selectedPath | async as path">
+    <ion-card-header>
+      <ion-card-title>{{ path.pathName | titlecase }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="none" *ngFor="let desc of path.description">{{
+        desc
+      }}</ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

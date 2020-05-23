@@ -1,15 +1,34 @@
 import { Store } from '@ngrx/store';
-import { loadPaths } from './map.actions';
+import { loadPaths, selectPathId } from './map.actions';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Path } from '../models/path';
-import { pathsSelector } from './map.selectors';
+import { MapState } from './map.reducer';
+import {
+  allPathsSelector,
+  entitiesSelector,
+  selectedPathId,
+  selectedPath,
+  waypoints
+} from './map.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class MapFacade {
-  paths: Observable<Path[]> = this.store.select(pathsSelector);
+  paths$ = this.store.select(allPathsSelector);
+
+  entitiesSelector$ = this.store.select(entitiesSelector);
+
+  selectedPathId$ = this.store.select(selectedPathId);
+
+  selectedPath$ = this.store.select(selectedPath);
+
+  waypoints$ = this.store.select(waypoints);
+
   loadPaths() {
     this.store.dispatch(loadPaths());
   }
-  constructor(private store: Store<MapFacade>) {}
+
+  selectPath(pathId: string) {
+    this.store.dispatch(selectPathId({ pathId }));
+  }
+
+  constructor(private store: Store<MapState>) {}
 }

@@ -4,5 +4,6 @@ export class Path {
   pathName: string;
   path: string;
   color: string;
+  description: string[];
   points: Point[];
 }
