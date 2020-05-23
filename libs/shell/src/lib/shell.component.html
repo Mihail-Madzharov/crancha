@@ -1,25 +1,3 @@
 <ion-app>
-  <ion-split-pane content-id="content">
-    <ion-menu type="overlay" content-id="content">
-      <ion-header>
-        <ion-toolbar translucent>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-item [routerLink]="['/map']">
-          <ion-label>
-            Map
-          </ion-label>
-        </ion-item>
-        <ion-item [routerLink]="['/upload']">
-          <ion-label>
-            Uploads
-          </ion-label>
-        </ion-item>
-      </ion-content>
-    </ion-menu>
-
-    <ion-router-outlet id="content"></ion-router-outlet>
-  </ion-split-pane>
+  <ion-router-outlet></ion-router-outlet>
 </ion-app>

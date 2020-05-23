@@ -1,4 +1,5 @@
 import { Point } from './point';
+import { Waypoint } from './waypoint';
 export class Path {
   id: string;
   pathName: string;
@@ -6,4 +7,5 @@ export class Path {
   color: string;
   description: string[];
   points: Point[];
+  waypoints: Waypoint[];
 }

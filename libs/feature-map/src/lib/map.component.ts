@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapFacade } from '@crancha/domain';
-import { MapTerrain } from '@crancha/utils';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
@@ -13,7 +12,7 @@ export class MapComponent implements OnInit {
 
   public infoWindowContent: string;
 
-  public paths = this.mapFacade.paths$;
+  public paths$ = this.mapFacade.paths$;
 
   public selectedPathId = this.mapFacade.selectedPathId$;
 
@@ -23,7 +22,6 @@ export class MapComponent implements OnInit {
 
   constructor(private mapFacade: MapFacade) {}
   public center = { lat: 42.0987626, lng: 24.1593068 };
-  public mapTerrain = MapTerrain;
 
   ngOnInit() {
     this.mapFacade.loadPaths();

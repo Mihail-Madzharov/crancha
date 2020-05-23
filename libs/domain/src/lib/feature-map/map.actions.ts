@@ -14,11 +14,6 @@ export const loadPathsSuccess = createAction(
   props<{ data: Path }>()
 );
 
-export const loadWaypoints = createAction(
-  '[Map] Load Waypoints',
-  props<{ data: Waypoint[] }>()
-);
-
 export const loadPathsFailure = createAction(
   '[Map] Load Paths Failure',
   props<{ error: any }>()

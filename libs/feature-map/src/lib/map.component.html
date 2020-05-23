@@ -11,7 +11,7 @@
     [center]="center"
     [zoom]="12"
     [width]="'100%'"
-    [options]="{ mapTypeId: terrain.value }"
+    [options]="{ mapTypeId: 'hybrid' }"
   >
     <map-marker
       #marker
@@ -21,7 +21,7 @@
       (mapClick)="openInfoWindow(marker, item.name)"
     ></map-marker>
     <map-polyline
-      *ngFor="let item of paths | async"
+      *ngFor="let item of paths$ | async"
       #polyline
       [options]="{
         path: item.points,
@@ -34,13 +34,6 @@
       {{ infoWindowContent }}
     </map-info-window>
   </google-map>
-  <ion-item>
-    <ion-select #terrain value="hybrid">
-      <ion-select-option *ngFor="let terrain of mapTerrain" [value]="terrain">{{
-        terrain
-      }}</ion-select-option>
-    </ion-select>
-  </ion-item>
 
   <ion-card *ngIf="selectedPath | async as path">
     <ion-card-header>
@@ -52,5 +45,23 @@
         desc
       }}</ion-item>
     </ion-card-content>
+  </ion-card>
+  <ion-card slot="fixed">
+    <div *ngFor="let path of paths$ | async">
+      <ion-button (click)="onPolylineClick(path.id)" [fill]="'clear'">{{
+        path.pathName
+      }}</ion-button>
+      <ion-card
+        *ngIf="
+          path.id === (selectedPathId | async) && path.waypoints.length > 0
+        "
+      >
+        <ion-grid>
+          <ion-row *ngFor="let waypoint of path.waypoints">
+            <b> {{ waypoint.name }} </b></ion-row
+          >
+        </ion-grid>
+      </ion-card>
+    </div>
   </ion-card>
 </ion-content>

@@ -26,7 +26,6 @@ export const selectedPath = createSelector(
   (entities, maps) => entities[maps.selectedPathId]
 );
 
-export const waypoints = createSelector(
-  selectMapState,
-  state => state.waypoints
+export const waypoints = createSelector(selectMapState, state =>
+  state.selectedPathId ? state.entities[state.selectedPathId].waypoints : []
 );

@@ -11,7 +11,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
 
 import * as MapActions from './map.actions';
-import { loadPathsSuccess, loadWaypoints } from './map.actions';
+import { loadPathsSuccess } from './map.actions';
 import { Path } from '../models/path';
 import { of } from 'rxjs';
 import { Waypoint } from '../models/waypoint';
@@ -34,7 +34,7 @@ export class MapEffects {
           })
         );
       }),
-      switchMap(({ response, path }) => {
+      map(({ response, path }) => {
         const gpx = new gpxParser();
         gpx.parse(response);
         const track = gpx.tracks[0];
@@ -75,19 +75,17 @@ export class MapEffects {
           lng: point.lon
         }));
 
-        return [
-          loadPathsSuccess({
-            data: {
-              id: path.id,
-              pathName: path.name,
-              points: res,
-              path: path.path,
-              color: path.color,
-              description: trackDescription
-            }
-          }),
-          loadWaypoints({ data: waypoints })
-        ];
+        return loadPathsSuccess({
+          data: {
+            id: path.id,
+            pathName: path.name,
+            points: res,
+            path: path.path,
+            color: path.color,
+            description: trackDescription,
+            waypoints
+          }
+        });
       })
     );
   });
