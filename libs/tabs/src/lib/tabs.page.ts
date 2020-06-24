@@ -13,4 +13,7 @@ export class TabsPage {
   test2() {
     console.log('test');
   }
+  test3() {
+    console.log('test 3 ');
+  }
 }
