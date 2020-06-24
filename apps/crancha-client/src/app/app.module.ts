@@ -9,7 +9,12 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
-import { StoreModule, META_REDUCERS, ActionReducer, MetaReducer } from '@ngrx/store';
+import {
+  StoreModule,
+  META_REDUCERS,
+  ActionReducer,
+  MetaReducer
+} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +41,7 @@ import { EffectsModule } from '@ngrx/effects';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
 export function metaReducerFactory(): MetaReducer<any> {
   return (reducer: ActionReducer<any>) => (state, action) => {
     console.log('state', state);

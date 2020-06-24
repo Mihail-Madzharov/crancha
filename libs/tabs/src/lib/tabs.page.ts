@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
   constructor() {}
+  test() {
+    console.log('test');
+  }
+  test2() {
+    console.log('test');
+  }
 }
